@@ -1,0 +1,45 @@
+package rds;
+
+import "server/msg.wproto";
+
+
+message zset_1field_int {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!zset";
+    int64 member = 1;
+}
+
+
+message zset_1field_string {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!zset";
+    string member = 1;
+}
+
+message zset_1field_msg {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!zset";
+    server.player member = 1;
+}
+
+message zset_2field_string_int64 {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!zset";
+    string member = 1;
+    int64 score = 2;
+}
+
+message zset_2field_string_int64_match {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!zset";
+    redis.member = "$x1=int32:$x2=int8:$string"
+    string member = 1;
+    int64 score = 2;
+}
+
+message zset_2field_msg_int64 {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!zset";
+    server.player member = 1;
+    int64 score = 2;
+}

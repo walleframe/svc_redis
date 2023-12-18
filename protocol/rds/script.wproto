@@ -1,0 +1,67 @@
+package rds;
+
+import "server/msg.wproto";
+
+message script_ret_string {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.script.script_name_1.lua = "xxx xxx x"
+    redis.script.script_name_1.argv = "$uid=int64:$name=string"
+    redis.script.script_name_1.reply = "$ret=string"
+    server.player value = 1;
+}
+
+message script_ret_int {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.script.script_name_1.lua = "xxx xxx x"
+    redis.script.script_name_1.argv = "$uid=int64:$name=string"
+    redis.script.script_name_1.reply = "$ret=int64"
+    server.player value = 1;
+}
+
+message script_ret_float {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.script.script_name_1.lua = "xxx xxx x"
+    redis.script.script_name_1.argv = "$uid=int64:$name=string"
+    redis.script.script_name_1.reply = "$ret=float32"
+    server.player value = 1;
+}
+
+message script_ret_bool {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.script.script_name_1.lua = "xxx xxx x"
+    redis.script.script_name_1.argv = "$uid=int64:$name=string"
+    redis.script.script_name_1.reply = "$ret=bool"
+    server.player value = 1;
+}
+
+message script_ret_int32 {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.script.script_name_1.lua = "xxx xxx x"
+    redis.script.script_name_1.argv = "$uid=int64:$name=string"
+    redis.script.script_name_1.reply = "$ret=int32"
+    server.player value = 1;
+}
+
+message script_ret_mul {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.script.script_name_1.lua = "xxx xxx x"
+    redis.script.script_name_1.argv = "$uid=int64:$name=string"
+    redis.script.script_name_1.reply = "$ret1=int32:$ret2=float64:$str=string:$vx=int64"
+    server.player value = 1;
+}
+
+message xxxx_lock {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!lock";
+}
+
+message xxxx2_lock {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "lock";
+}

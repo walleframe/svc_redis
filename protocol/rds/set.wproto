@@ -1,0 +1,23 @@
+package rds;
+
+import "server/msg.wproto";
+
+
+message set_1field_int {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!set";
+    int64 value = 1;
+}
+
+
+message set_1field_string {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!set";
+    string value = 1;
+}
+
+message set_1field_msg {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!set";
+    server.player value = 1;
+}

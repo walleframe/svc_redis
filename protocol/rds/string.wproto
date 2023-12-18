@@ -1,0 +1,85 @@
+package rds;
+
+import "server/msg.wproto";
+
+message test_protocol_def 
+{
+    server.player f2 = 2;
+
+    int64 f4 = 4 {
+        xx.x1 = "";
+    };
+
+    message x1 {
+        opt.v1 = 1;
+        opt.v2 = true;
+        opt.v3 = "string";
+        
+        int32 f1 = 1;
+        server.player f2 = 2;
+        
+
+        int64 f4 = 4 {
+            xx.x1 = "";
+        };
+    }
+
+    x1 f5 = 5;
+}
+
+message string_string_default {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+}
+
+message string_string_nokey {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type ="!string";
+    int32 f1 = 1;
+};
+
+message string_string_withkey {
+    redis.key = "u:data:$uid=int64:@daystamp+8"
+    redis.type ="!string"
+}
+
+message string_pb_nokey {
+    redis.key = "u:data:$uid=int64:@daystamp+8"
+    redis.type ="!string"
+    redis.protobuf = true
+}
+
+
+message string_wpb_nokey {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type ="!string";
+    redis.wproto = true;
+}
+
+
+message string_f1_int32 {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type ="!string";
+    int32 f1 = 1;
+}
+
+
+message string_f1_uint32 {
+    redis.key = "u:data:$uid=int64:@daystamp+8"
+    redis.type ="!string"
+    uint32 f1 = 1;
+}
+
+
+message string_f1_float32 {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type ="!string";
+    float32 f1 = 1;
+}
+
+message string_msg1_walle {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!string";
+    int32 f1 = 1;
+}
+
+

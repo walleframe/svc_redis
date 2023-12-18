@@ -1,0 +1,9 @@
+package server;
+
+proto.gopkg = "github.com/walleframe/svc_redis/example/server"
+
+message player
+{
+    int64 uid = 1;
+    string name = 2;
+}

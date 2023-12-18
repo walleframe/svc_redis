@@ -1,0 +1,103 @@
+package rds;
+
+import "server/msg.wproto";
+
+message hash_1field_msg {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    server.player value = 1;
+}
+
+message hash_2field_int_float {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    int64 key = 1;
+    float64 value = 2;
+}
+
+
+message hash_2field_int_string {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    int64 key = 1;
+    string value = 2;
+}
+
+message hash_2field_string_int {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    string key = 1;
+    int64 value = 2;
+}
+
+message hash_2field_float_int {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    float32 key = 1;
+    int64 value = 2;
+}
+
+
+
+message hash_2field_string_string {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.protobuf = true;
+    string key = 1;
+    int64 value = 2;
+}
+
+message hash_2field_string_string_pb {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.protobuf = true;
+    string key = 1;
+    int64 value = 2;
+}
+
+message hash_2field_string_string_wpb {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.wproto = true;
+    string key = 1;
+    int64 value = 2;
+}
+
+
+message hash_2field_string_int_match {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.field = "$x1=int32:$x2=int8:$string"
+    string key = 1;
+    int64 value = 2;
+}
+
+
+message hash_2field_int_string_match {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.value = "$x1=int32:$x2=int8:$string"
+    int64 key = 1;
+    string value = 2;
+}
+
+message hash_2field_string_string_match {
+    redis.key = "u:data:$uid=int64:@daystamp+8";
+    redis.type = "!hash";
+    redis.field = "$x1=int32:$x2=int8:$string"
+    redis.value = "$a1=int32:$a2=int8:$a4=string"
+    int64 key = 1;
+    string value = 2;
+}
+
+
+// message hash_3field_mix_message_int2string {
+//     redis.key = "u:data:$uid=int64:@daystamp+8";
+//     redis.type = "!hash";
+//     redis.field = "$x1=int32:$x2=int8:$string"
+//     redis.value = "$a1=int32:$a2=int8:$a4=string"
+//     server.player msg = 1;
+//     int64 key = 2;
+//     string value = 3;
+// }
+
