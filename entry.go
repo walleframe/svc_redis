@@ -14,7 +14,7 @@ var service = &RedisCacheService{
 
 func init() {
 	// register redis service
-	bootstrap.RegisterServiceByPriority(100, service)
+	bootstrap.RegisterServiceByPriority(40, service)
 }
 
 // RegisterDBName register redis cache config
