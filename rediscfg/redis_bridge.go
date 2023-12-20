@@ -6,30 +6,35 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
+// redis config
+//
 //go:generate gogen cfggen -n Config -o gen_configs.go
 func generateRedisConfig() interface{} {
 	return map[string]interface{}{
 		"Name": "",
 		// redis addrs
-		"Addrs":                 []string{"127.0.0.1:6379"},
-		"DB":                    0,  // db index
-		"Username":              "", // user name
-		"Password":              "", // password
-		"MaxRetries":            0,
-		"MinRetryBackoff":       time.Duration(0),
-		"MaxRetryBackoff":       time.Duration(0),
-		"ConnDialTimeout":       time.Duration(time.Second * 5), // dail timeout
-		"SocketReadTimeout":     time.Duration(time.Second * 3), // read timeout
-		"SocketWriteTimeout":    time.Duration(time.Second * 3), // write timeout
-		"ContextTimeoutEnabled": false,                          // context time enable
-		"PoolFIFO":              false,                          // pool fifo, lifo default
-		"ConnPoolSize":          0,                              // connection pool size
-		"PoolTimeout":           time.Duration(0),               // pool timeout
-		"MinIdleConns":          0,                              // min idel count
-		"MaxIdleConns":          0,                              // max idle conn count
-		"MaxActiveConns":        0,                              // max active connection count
-		"ConnMaxIdleTime":       time.Duration(0),               // max idel time
-		"ConnMaxLifetime":       time.Duration(0),               // max life time
+		"Addrs":           []string{"127.0.0.1:6379"},
+		"DB":              0,  // db index
+		"Username":        "", // user name
+		"Password":        "", // password
+		"MaxRetries":      0,
+		"MinRetryBackoff": time.Duration(0),
+		"MaxRetryBackoff": time.Duration(0),
+		// dail timeout
+		"ConnDialTimeout": time.Duration(time.Second * 5),
+		// read timeout
+		"SocketReadTimeout": time.Duration(time.Second * 3),
+		// write timeout
+		"SocketWriteTimeout":    time.Duration(time.Second * 3),
+		"ContextTimeoutEnabled": false,            // context time enable
+		"PoolFIFO":              false,            // pool fifo, lifo default
+		"ConnPoolSize":          0,                // connection pool size
+		"PoolTimeout":           time.Duration(0), // pool timeout
+		"MinIdleConns":          0,                // min idel count
+		"MaxIdleConns":          0,                // max idle conn count
+		"MaxActiveConns":        0,                // max active connection count
+		"ConnMaxIdleTime":       time.Duration(0), // max idel time
+		"ConnMaxLifetime":       time.Duration(0), // max life time
 		"DisableIndentity":      false,
 
 		"SentinelUsername":   "", // sentinel username
