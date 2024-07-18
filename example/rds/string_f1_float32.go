@@ -60,6 +60,15 @@ func (x *xStringF1Float32RedisOpt) Get(ctx context.Context) (float32, error) {
 	return float32(val), nil
 }
 
+func (x *xStringF1Float32RedisOpt) IncrBy(ctx context.Context, val int) (_ float32, err error) {
+	cmd := redis.NewFloatCmd(ctx, "incrbyfloat", x.key, strconv.FormatInt(int64(val), 10))
+	err = x.rds.Process(ctx, cmd)
+	if err != nil {
+		return
+	}
+	return float32(cmd.Val()), nil
+}
+
 func (x *xStringF1Float32RedisOpt) Set(ctx context.Context, val float32, expire time.Duration) error {
 	return x.rds.Set(ctx, x.key, rdconv.Float64ToString(float64(val)), expire).Err()
 }

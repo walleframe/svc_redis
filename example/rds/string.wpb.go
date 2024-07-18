@@ -13,9 +13,9 @@ import (
 )
 
 type TestProtocolDef struct {
-	F2 *server.Player `json:"f2,omitempty"`
-	F4 int64          `json:"f4,omitempty"`
-	F5 *X1            `json:"f5,omitempty"`
+	F2 *server.Player `json:"f2,omitempty" db:"f2"`
+	F4 int64          `json:"f4,omitempty" db:"f4"`
+	F5 *X1            `json:"f5,omitempty" db:"f5"`
 }
 
 func (x *TestProtocolDef) Reset() {
@@ -131,9 +131,9 @@ func (x *TestProtocolDef) UnmarshalObject(data []byte) (err error) {
 }
 
 func (x *TestProtocolDef) MarshalLogObject(enc zapcore.ObjectEncoder) error {
-	enc.AddObject("F2", x.F2)
-	enc.AddInt64("F4", x.F4)
-	enc.AddObject("F5", x.F5)
+	enc.AddObject("f2", x.F2)
+	enc.AddInt64("f4", x.F4)
+	enc.AddObject("f5", x.F5)
 	return nil
 }
 
@@ -151,9 +151,9 @@ func LogArrayTestProtocolDef(name string, v []*TestProtocolDef) zap.Field {
 }
 
 type X1 struct {
-	F1 int32          `json:"f1,omitempty"`
-	F2 *server.Player `json:"f2,omitempty"`
-	F4 int64          `json:"f4,omitempty"`
+	F1 int32          `json:"f1,omitempty" db:"f1"`
+	F2 *server.Player `json:"f2,omitempty" db:"f2"`
+	F4 int64          `json:"f4,omitempty" db:"f4"`
 }
 
 func (x *X1) Reset() {
@@ -261,9 +261,9 @@ func (x *X1) UnmarshalObject(data []byte) (err error) {
 }
 
 func (x *X1) MarshalLogObject(enc zapcore.ObjectEncoder) error {
-	enc.AddInt32("F1", x.F1)
-	enc.AddObject("F2", x.F2)
-	enc.AddInt64("F4", x.F4)
+	enc.AddInt32("f1", x.F1)
+	enc.AddObject("f2", x.F2)
+	enc.AddInt64("f4", x.F4)
 	return nil
 }
 

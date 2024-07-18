@@ -2,6 +2,7 @@ package rds
 
 import (
 	"context"
+	"strconv"
 	"time"
 
 	"github.com/redis/go-redis/v9"
@@ -46,12 +47,22 @@ func (x *xStringPbNokeyRedisOpt) Key() string {
 ////////////////////////////////////////////////////////////
 // redis string operation
 
-func (x *xStringPbNokeyRedisOpt) GetRange(ctx context.Context, start, end int64) (string, error) {
-	return x.rds.GetRange(ctx, x.key, start, end).Result()
+func (x *xStringPbNokeyRedisOpt) GetRange(ctx context.Context, start, end int64) (_ string, err error) {
+	cmd := redis.NewStringCmd(ctx, "getrange", x.key, strconv.FormatInt(start, 10), strconv.FormatInt(end, 10))
+	err = x.rds.Process(ctx, cmd)
+	if err != nil {
+		return
+	}
+	return cmd.Val(), nil
 }
 
-func (x *xStringPbNokeyRedisOpt) SetRange(ctx context.Context, offset int64, value string) (int64, error) {
-	return x.rds.SetRange(ctx, x.key, offset, value).Result()
+func (x *xStringPbNokeyRedisOpt) SetRange(ctx context.Context, offset int64, value string) (_ int64, err error) {
+	cmd := redis.NewIntCmd(ctx, "setrange", x.key, strconv.FormatInt(offset, 10), value)
+	err = x.rds.Process(ctx, cmd)
+	if err != nil {
+		return
+	}
+	return cmd.Val(), nil
 }
 
 func (x *xStringPbNokeyRedisOpt) Append(ctx context.Context, val string) (int64, error) {

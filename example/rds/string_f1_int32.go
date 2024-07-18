@@ -52,9 +52,13 @@ func (x *xStringF1Int32RedisOpt) Incr(ctx context.Context) (int32, error) {
 	return int32(n), err
 }
 
-func (x *xStringF1Int32RedisOpt) IncrBy(ctx context.Context, val int) (int32, error) {
-	n, err := x.rds.IncrBy(ctx, x.key, int64(val)).Result()
-	return int32(n), err
+func (x *xStringF1Int32RedisOpt) IncrBy(ctx context.Context, val int) (_ int32, err error) {
+	cmd := redis.NewIntCmd(ctx, "incrby", x.key, strconv.FormatInt(int64(val), 10))
+	err = x.rds.Process(ctx, cmd)
+	if err != nil {
+		return
+	}
+	return int32(cmd.Val()), nil
 }
 
 func (x *xStringF1Int32RedisOpt) Decr(ctx context.Context) (int32, error) {
@@ -62,9 +66,13 @@ func (x *xStringF1Int32RedisOpt) Decr(ctx context.Context) (int32, error) {
 	return int32(n), err
 }
 
-func (x *xStringF1Int32RedisOpt) DecrBy(ctx context.Context, val int) (int32, error) {
-	n, err := x.rds.DecrBy(ctx, x.key, int64(val)).Result()
-	return int32(n), err
+func (x *xStringF1Int32RedisOpt) DecrBy(ctx context.Context, val int) (_ int32, err error) {
+	cmd := redis.NewIntCmd(ctx, "decrby", x.key, strconv.FormatInt(int64(val), 10))
+	err = x.rds.Process(ctx, cmd)
+	if err != nil {
+		return
+	}
+	return int32(cmd.Val()), nil
 }
 
 func (x *xStringF1Int32RedisOpt) Get(ctx context.Context) (int32, error) {

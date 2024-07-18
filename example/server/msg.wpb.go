@@ -12,8 +12,8 @@ import (
 )
 
 type Player struct {
-	Uid  int64  `json:"uid,omitempty"`
-	Name string `json:"name,omitempty"`
+	Uid  int64  `json:"uid,omitempty" db:"uid"`
+	Name string `json:"name,omitempty" db:"name"`
 }
 
 func (x *Player) Reset() {
@@ -96,8 +96,8 @@ func (x *Player) UnmarshalObject(data []byte) (err error) {
 }
 
 func (x *Player) MarshalLogObject(enc zapcore.ObjectEncoder) error {
-	enc.AddInt64("Uid", x.Uid)
-	enc.AddString("Name", x.Name)
+	enc.AddInt64("uid", x.Uid)
+	enc.AddString("name", x.Name)
 	return nil
 }
 
